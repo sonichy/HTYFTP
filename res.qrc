@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>HTYFTP.png</file>
+    </qresource>
+</RCC>
