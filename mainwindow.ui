@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>350</height>
+    <width>633</width>
+    <height>608</height>
    </rect>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>海天鹰FTP</string>
@@ -18,8 +21,11 @@
     <normaloff>HTYFTP.png</normaloff>HTYFTP.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
     <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -86,26 +92,15 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton_choose_upload">
-          <property name="text">
-           <string>选择文件</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QLineEdit" name="lineEdit_path_upload">
+          <property name="toolTip">
+           <string>上传路径</string>
+          </property>
           <property name="text">
            <string/>
           </property>
           <property name="placeholderText">
            <string>上传路径</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_upload">
-          <property name="text">
-           <string>上传</string>
           </property>
          </widget>
         </item>
@@ -133,25 +128,14 @@
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLineEdit" name="lineEdit_path_download">
+          <property name="toolTip">
+           <string>下载路径</string>
+          </property>
           <property name="text">
            <string>/</string>
           </property>
           <property name="placeholderText">
            <string>下载路径</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_path_local">
-          <property name="text">
-           <string>本地路径</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_download">
-          <property name="text">
-           <string>下载</string>
           </property>
          </widget>
         </item>
@@ -173,6 +157,59 @@
       </property>
      </widget>
     </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QListWidget" name="listWidget_upload">
+        <property name="contextMenuPolicy">
+         <enum>Qt::CustomContextMenu</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QPushButton" name="pushButton_upload1">
+          <property name="toolTip">
+           <string>上传</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset theme="go-next">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_download1">
+          <property name="toolTip">
+           <string>下载</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset theme="go-previous">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="placeholderText">
+         <string>下载路径，换行分隔</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -180,7 +217,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>633</width>
      <height>26</height>
     </rect>
    </property>

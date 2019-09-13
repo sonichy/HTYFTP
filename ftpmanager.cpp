@@ -38,32 +38,26 @@ void FtpManager::put(const QString &fileName, const QString &path)
 // 下载文件
 void FtpManager::get(const QString &path, const QString &fileName)
 {
-    QFileInfo info;
-    info.setFile(fileName);
-    m_file.setFileName(fileName);
-    m_file.open(QIODevice::WriteOnly | QIODevice::Append);
     m_pUrl.setPath(path);
     qDebug() << "get" << path << fileName;
     QNetworkReply *pReply = m_manager.get(QNetworkRequest(m_pUrl));
-    connect(pReply, SIGNAL(finished()), this, SLOT(finished()));
+    connect(pReply, &QNetworkReply::finished, [=]() {
+        qDebug() << pReply->errorString();
+        switch (pReply->error()) {
+        case QNetworkReply::NoError :{
+            QFile m_file;
+            m_file.setFileName(fileName);
+            m_file.open(QIODevice::WriteOnly);
+            m_file.write(pReply->readAll());
+            m_file.flush();
+            m_file.close();
+            break;}
+        default:
+            break;
+        }
+        pReply->deleteLater();
+    });
     connect(pReply, SIGNAL(downloadProgress(qint64, qint64)), this, SIGNAL(downloadProgress(qint64, qint64)));
     connect(pReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SIGNAL(error(QNetworkReply::NetworkError)));
-}
 
-// 下载过程中写文件
-void FtpManager::finished()
-{
-    QNetworkReply *pReply = qobject_cast<QNetworkReply*>(sender());
-    switch (pReply->error()) {
-    case QNetworkReply::NoError : {
-        m_file.write(pReply->readAll());
-        m_file.flush();
-    }
-        break;
-    default:
-        break;
-    }
-
-    m_file.close();
-    pReply->deleteLater();
 }

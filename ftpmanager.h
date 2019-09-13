@@ -30,12 +30,13 @@ signals:
 
 private slots:
     // 下载过程中写文件
-    void finished();
+    //void finished();
 
 private:
     QUrl m_pUrl;
-    QFile m_file;
     QNetworkAccessManager m_manager;
+    //QFile m_file;
+
 };
 
 #endif // FTP_MANAGER
